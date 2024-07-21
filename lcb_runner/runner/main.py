@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 
 from lcb_runner.runner.parser import get_args
 from lcb_runner.utils.scenarios import Scenario
@@ -23,6 +24,18 @@ def main():
     if args.debug:
         print(f"Running with {len(benchmark)} instances in debug mode")
         benchmark = benchmark[:5]
+
+    if args.start_date is not None:
+        args.start_date = datetime.strptime(args.start_date, "%Y-%m-%d")
+        benchmark = [
+            question for question in benchmark if args.start_date <= question.contest_date
+        ]
+
+    if args.end_date is not None:
+        args.end_date = datetime.strptime(args.end_date, "%Y-%m-%d")
+        benchmark = [
+            question for question in benchmark if question.contest_date <= args.end_date
+        ]
 
     output_path = get_output_path(model.model_repr, args)
     eval_file = output_path.replace(".json", "_eval.json")

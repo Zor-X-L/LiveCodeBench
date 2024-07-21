@@ -42,6 +42,18 @@ def get_args():
         help="whether to use full set of tests (slower and more memory intensive evaluation)",
     )
     parser.add_argument(
+        "--start_date",
+        type=str,
+        default=None,
+        help="Start date for the contest to filter the evaluation file (format - YYYY-MM-DD)",
+    )
+    parser.add_argument(
+        "--end_date",
+        type=str,
+        default=None,
+        help="End date for the contest to filter the evaluation file (format - YYYY-MM-DD)",
+    )
+    parser.add_argument(
         "--cot_code_execution",
         action="store_true",
         help="whether to use CoT in code execution scenario",
