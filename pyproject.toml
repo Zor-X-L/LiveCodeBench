@@ -8,7 +8,13 @@ readme = "README.md"
 [[tool.poetry.source]]
 name = 'pypi_'  # needed until python-poetry/poetry#3456 is resolved.
 url = 'https://pypi.org/simple'
-priority = 'primary'
+priority = "primary"
+
+
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+priority = "primary"
 
 [tool.poetry.dependencies]
 python = ">=3.10 <4"
